@@ -266,8 +266,8 @@ abstract class BaseHTTPFuture extends Future {
    * @task internal
    */
   protected function parseRawHTTPResponse($raw_response) {
-    $rex_base = "@^(?P<head>.*?)\r?\n\r?\n(?P<body>for\(\;\;\)\;.*)$@s";
-    $rex_head = "@^HTTP/\S+ (?P<code>\d+) .*?(?:\r?\n(?P<headers>.*))?$@s";
+    $rex_base = "@^(?:HTTP.*)?(?P<head>HTTP.*?)\r?\n\r?\n(?P<body>for\(\;\;\)\;.*)$@s";
+    $rex_head = "@^(?:HTTP.*)?HTTP/\S+ (?P<code>\d+) .*?(?:\r?\n(?P<headers>.*))?$@s";
 
     // We need to parse one or more header blocks in case we got any
     // "HTTP/1.X 100 Continue" nonsense back as part of the response. This
